@@ -1,0 +1,13 @@
+<h1>{{book.title}}</h1>
+<!--{{#if authors}}
+<p>Written by: {{#each authors}} {{this.firstName}} {{this.lastName}} {{#unless @last}},{{/unless}}{{/each}}</p>
+{{/if}}
+-->
+
+
+
+{{#if author}}
+<p>Written by:  {{author.firstName}} {{author.lastName}} </p>
+{{/if}}
+
+<p>Published in {{book.year}}</p>
