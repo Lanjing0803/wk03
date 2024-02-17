@@ -1,7 +1,7 @@
 const books = [
-    {title: "Leviathan Wakes", year: "2011", authorId: "0"},
-    {title: "Convergence", year: "2022", authorId: "1"},
-    {title: "The Wandering Earth", year: "2000", authorId: "2"},
+    {title: "Leviathan Wakes", year: "2011", authorId: "0", genreId: "0"},
+    {title: "Convergence", year: "2022", authorId: "1", genreId: "0"},
+    {title: "The Wandering Earth", year: "2000", authorId: "2", genreId: "0"},
   ]
   
   exports.all = books

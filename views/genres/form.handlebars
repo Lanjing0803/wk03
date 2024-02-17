@@ -1,0 +1,30 @@
+<h1>New Genre</h1>
+<form action="/genres/upsert" role="form" method="post">
+  {{#if genre}}
+    <div>
+      <h2>{{genre.genreName}} </h2>
+      <input type="hidden" name="id" value="{{genreIndex}}">
+    </div>
+  {{/if}}
+  <div>
+    <label for="genre_name">First Name</label>
+    <input type="text" id="genre_name" name="genreName" {{#if genre}}value="{{genre.genreName}}"{{/if}}>
+  </div>
+
+
+
+
+  <div class="mb-3">
+    <label for="bookId">Book</label>
+    <select name="bookId" id="bookId">
+      <option disabled selected value>-- select Book --</option>
+      {{#each books}}
+        <option value="{{@index}}">
+          {{this.title}} {{this.year}}
+        </option>
+      {{/each}}
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
