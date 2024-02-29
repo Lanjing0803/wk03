@@ -11,6 +11,8 @@ router.get('/', function(req, res, next) {
 router.get('/form', async (req, res, next) => {
   res.render('books/form', { title: 'BookedIn || books', authors: Author.all, genres: Genre.all });
 });
+
+
 router.post('/upsert', async (req, res, next) => {
   console.log('body: ' + JSON.stringify(req.body));
   Book.upsert(req.body);
@@ -30,9 +32,12 @@ router.get('/show/:id', async (req, res, next) => {
     title: 'BookedIn || Books',
     book: Book.get(req.params.id)
   }
-  if (templateVars.book.authorId) {
-    templateVars['author'] = Author.get(templateVars.book.authorId);
+ 
+
+  if (templateVars.book.authorIds) {
+    templateVars['authors'] = templateVars.book.authorIds.map((authorId) => Author.get(authorId))
   }
+
   if (templateVars.book.genreId) {
     templateVars['genre'] = Genre.get(templateVars.book.genreId);
   }

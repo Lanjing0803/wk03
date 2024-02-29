@@ -1,10 +1,8 @@
 const express = require('express')
+const { credentials } = require('./config')
 const indexRouter = require('./routes/index');
 const app = express()
 const port = 3000
-
-
-
 
 
 
