@@ -1,7 +1,7 @@
 <h1>New Author</h1>
+
 <form action="/authors/upsert" role="form" method="post">
   <input type="hidden" name="_csrf" value="{{_csrfToken}}">
-
   {{#if author}}
     <div>
       <h2>{{author.firstName}} {{author.lastName}}</h2>
@@ -16,20 +16,5 @@
     <label for="last_name">Last name</label>
     <input type="text" id="last_name" name="lastName" {{#if author}}value="{{author.lastName}}"{{/if}}>
   </div>
-
-
-
-  <div class="mb-3">
-    <label for="bookId">Book</label>
-    <select name="bookId" id="bookId">
-      <option disabled selected value>-- select Book --</option>
-      {{#each books}}
-        <option value="{{@index}}">
-          {{this.title}} {{this.year}}
-        </option>
-      {{/each}}
-    </select>
-  </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
-

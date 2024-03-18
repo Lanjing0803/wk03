@@ -1,0 +1,13 @@
+<h1>Edit Comment</h1>
+
+<form action="/comments/upsert" role="form" method="post">
+  <input type="hidden" name="_csrf" value="{{_csrfToken}}">
+
+  {{#if comment}}
+ <div>
+    <label for="text">Comment</label>
+    <input type="text" id="text" name="text" {{#if comment}}value="{{comment.text}}"{{/if}}>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+ {{/if}}
+ </form>

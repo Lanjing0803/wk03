@@ -12,13 +12,13 @@ const encryptPassword = (password, salt) => {
 const users = [
   {email:"wwang24@outlook.com",name:"Wenge Wang",salt:"e3035b0b998dd9243aee7d9659543c87"}
 ];
-exports.all = users
+
 
 exports.getByEmail = (email) => {
   return users.find((user) => user.email === email);
 }
 exports.get = (idx) =>{
-  return user[idx];
+  return users[idx];
 }
 
 
@@ -47,3 +47,4 @@ exports.login = (login) => {
   return null;
 }
 
+exports.all = users
