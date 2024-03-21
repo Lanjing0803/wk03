@@ -35,15 +35,17 @@
 <h2>Comments</h2>
 {{#if currentUser}}
 <form action="/comments/upsert" method="post">
-<textarea style="min-height:80px"></textarea><br>
+    <input type="hidden" name="_csrf" value="{{_csrfToken}}">
+    <input type="hidden" name="bookId" value="{{bookId}}">
+    <input type="hidden" name="userEmail" value="{{currentUser.email}}">
+<textarea style="min-height:80px" name="text"></textarea><br>
    <button  type="submit">New Comment</button>
    </form>
 {{/if}}
 
 {{#each comments}}
-    <p>{{this.text}}</p>
-    <p>by {{this.userEmail}}</p>
+    <p>{{this.text}}<br>by {{this.userEmail}}</p>
     
-    {{#if (eq @root.user.email this.userEmail)}}  <a href="/comments/edit?id={{@index}}">edit</a>{{/if}}
+    {{#if (eq @root.currentUser.email this.userEmail)}}  <a href="/comments/edit?id={{@index}}">edit</a>{{/if}}
 
   {{/each}}

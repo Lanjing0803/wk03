@@ -28,7 +28,7 @@ router.get('/show/:id', async (req, res, next) => {
     book: Book.get(req.params.id),
     bookId: req.params.id,
     statuses: BookUser.statuses,
-    user:User.email,
+    user:User.get(req.params.idx),
     comments: Comment.AllForBook(req.params.id)
   }
   if (templateVars.book.authorIds) {

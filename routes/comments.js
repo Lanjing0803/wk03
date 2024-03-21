@@ -1,29 +1,31 @@
 const express = require('express');
-const router = express.Router();
 const Comment = require('../models/comment');
-const Book = require('../models/book');
+const router = express.Router();
 
 
 router.get('/form', async (req, res, next) => {
-  res.render('comments/form', { title: 'BookedIn || Authors' });
+  res.render('comments/form', { title: 'BookedIn || Comments' },);
 });
 
 router.get('/edit', async (req, res, next) => {
   let commentIndex = req.query.id;
   let comment = Comment.get(commentIndex);
-  res.render('comments/form', { title: 'BookedIn || Comments', comment: comment, commentIndex: commentIndex });
+  res.render('comments/form', { title: 'BookedIn || Comments', comment: comment, commentIndex: commentIndex});
+
 });
 
 router.post('/upsert', async (req, res, next) => {
-  console.log('body: ' + JSON.stringify(req.body))
-  let commentIndex = req.body.id;
+  console.log('in comments upsert - body: ' + JSON.stringify(req.body))
+  Comment.upsert(req.body);
   let createdOrupdated = req.body.id ? 'updated' : 'created';
   req.session.flash = {
     type: 'info',
     intro: 'Success!',
     message: `The comment has been ${createdOrupdated}!`,
   };
-  res.redirect(303, '/books'); 
+  let bookurl = `${req.body.bookId}`;
+  res.redirect(303, `/books/show/${bookurl}`);
+
 });
 
 module.exports = router;
