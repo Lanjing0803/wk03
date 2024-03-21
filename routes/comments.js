@@ -10,6 +10,7 @@ router.get('/form', async (req, res, next) => {
 router.get('/edit', async (req, res, next) => {
   let commentIndex = req.query.id;
   let comment = Comment.get(commentIndex);
+  console.log("comment: ", comment);
   res.render('comments/form', { title: 'BookedIn || Comments', comment: comment, commentIndex: commentIndex});
 
 });
@@ -23,8 +24,9 @@ router.post('/upsert', async (req, res, next) => {
     intro: 'Success!',
     message: `The comment has been ${createdOrupdated}!`,
   };
-  let bookurl = `${req.body.bookId}`;
-  res.redirect(303, `/books/show/${bookurl}`);
+  let bookurl = `/books/show/${req.body.bookId}`;
+  console.log('my book url for return is:', bookurl);
+  res.redirect(303, bookurl);
 
 });
 
